@@ -28,5 +28,5 @@ class ToDoModelViewSet(ModelViewSet):
     filterset_class = ToDoFilter
 
     def perform_destroy(self, instance):
-        instance['is_active'] = False
+        instance.is_active = False
         instance.save()
