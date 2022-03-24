@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authors',
     'users',
+    'todo',
     'rest_framework',
     'corsheaders',
 ]
@@ -135,3 +136,9 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 # CORS_ALLOW_ALL_ORIGINS = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDER_CLASSES': [
+        'rest_frameworks.renders.JSONRenderer',
+    ]
+}
