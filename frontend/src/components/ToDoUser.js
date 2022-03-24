@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import Link from "react-router-dom/es/Link";
 
 
@@ -23,9 +24,11 @@ const UserItem = ({user}) => {
 }
 
 
-const UserList = ({users}) => {
-   return (
-       <table>
+const TodoUserList = ({users}) => {
+    let {uid} = useParams();
+    let filtered_items = users.filter((user) => user.uid == uid)
+    return (
+        <table>
            <th>
                Uid
            </th>
@@ -41,10 +44,9 @@ const UserList = ({users}) => {
            <th>
                Email
            </th>
-           {users.map((user) => <UserItem user={user} />)}
+            {filtered_items.map((user) => <UserItem user={user} />)}
        </table>
-   )
-}
+    )
+    }
 
-
-export default UserList
+export default TodoUserList
