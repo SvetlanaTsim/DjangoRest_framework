@@ -10,6 +10,9 @@ class Project(models.Model):
     repository_link = models.CharField(max_length=200, blank=True)
     project_users = models.ManyToManyField(User)
 
+    def __str__(self):
+        return self.project_name
+
 
 class ToDo(models.Model):
     uid = models.UUIDField(primary_key=True, default=uuid4)
@@ -19,3 +22,4 @@ class ToDo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+
