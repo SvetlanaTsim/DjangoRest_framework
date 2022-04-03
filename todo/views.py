@@ -1,3 +1,4 @@
+from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from .filters import ProjectFilter, ToDoFilter
 from .models import Project, ToDo
@@ -23,6 +24,7 @@ class ProjectModelViewSet(ModelViewSet):
 #при удалении не удалять заметку, а выставлять признак, что она закрыта
 class ToDoModelViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ToDoModelSerializer
     pagination_class = ToDoPageNumberPagination
     filterset_class = ToDoFilter
