@@ -9,12 +9,13 @@ class ProjectModelSerializer(ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+        # exclude = ['project_users']
 
 
 class SimpleProjectModelSerializer(ModelSerializer):
     class Meta:
         model = Project
-        fields = ['project_name', 'repository_link']
+        fields = ['uid', 'project_name']
 
 
 class ToDoModelSerializer(ModelSerializer):
@@ -24,3 +25,4 @@ class ToDoModelSerializer(ModelSerializer):
     class Meta:
         model = ToDo
         fields = '__all__'
+        # exclude = ['project', 'user']
