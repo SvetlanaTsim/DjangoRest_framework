@@ -154,6 +154,7 @@ class App extends React.Component {
                     <Route path="/project/:uid">
                         <ProjectTodoList todos={this.state.todos} />
                     </Route>
+                    <Redirect from='/todo/user/:uid' to='/' />
                     <Route path="/todo/:uid">
                         <TodoUserList users={this.state.users} />
                     </Route>
