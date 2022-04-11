@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
     'authors',
     'users',
     'todo',
@@ -151,6 +152,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100,
 
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'],
+    #'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
     'rest_framework.authentication.BasicAuthentication',
@@ -161,3 +163,8 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
 
 }
+
+GRAPHENE = {
+    "SCHEMA": "library.schema.schema"
+}
+

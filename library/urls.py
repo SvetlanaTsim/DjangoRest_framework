@@ -23,6 +23,7 @@ from users.views import UserModelViewSet
 from rest_framework.authtoken import views
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from graphene_django.views import GraphQLView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -48,6 +49,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
+    path("graphql/", GraphQLView.as_view(graphiql=True)),
+
 
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
             schema_view.without_ui(cache_timeout=0), name='schema-json'),
