@@ -22,3 +22,10 @@ class SimpleUserModelSerializer(ModelSerializer):
 
     # def __str__(self):
     #     return self.username
+
+
+class SimpleUserModelSerializerBase(ModelSerializer):
+    class Meta:
+        model = User
+        # fields = ['username', 'first_name', 'last_name']
+        fields = ['uid']

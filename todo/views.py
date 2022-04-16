@@ -2,7 +2,8 @@ from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from .filters import ProjectFilter, ToDoFilter
 from .models import Project, ToDo
-from .serializers import ProjectModelSerializer, ToDoModelSerializer, ToDoModelSerializerBase
+from .serializers import ProjectModelSerializer, ToDoModelSerializer, ToDoModelSerializerBase, \
+    ProjectModelSerializerBase
 from rest_framework.pagination import PageNumberPagination
 
 
@@ -16,9 +17,15 @@ class ToDoPageNumberPagination(PageNumberPagination):
 
 class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
-    serializer_class = ProjectModelSerializer
+    #serializer_class = ProjectModelSerializer
+    #serializer_class = ProjectModelSerializerBase
     pagination_class = ProjectPageNumberPagination
     filterset_class = ProjectFilter
+
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return ProjectModelSerializer
+        return ProjectModelSerializerBase
 
 
 #при удалении не удалять заметку, а выставлять признак, что она закрыта
