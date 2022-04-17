@@ -15,6 +15,7 @@ import LoginForm from './components/Auth.js';
 import Cookies from 'universal-cookie';
 import ProjectForm from "./components/ProjectForm";
 import ToDoForm from "./components/TodoForm";
+import ProjectFilterForm from "./components/ProjectFilterForm";
 
 
 const NotFound404 = ({ location }) => {
@@ -165,6 +166,14 @@ class App extends React.Component {
             }).catch(error => console.log(error))
     }
 
+    filterProjectByName(project_name) {
+        //const project = this.state.projects.filter((item) => item.project_name === project_name)
+        //const project = this.state.projects.filter((item) =>  item.project_name.indexOf(project_name) > -1)
+        const projects = this.state.projects.filter((item) =>  item.project_name.toLowerCase().indexOf(project_name.toLowerCase()) > -1)
+        //console.log(projects)
+        return projects
+    }
+
    render () {
        return (
            <div className="App">
@@ -193,6 +202,8 @@ class App extends React.Component {
                     <Route exact path='/projects/create' component={() =>
                         <ProjectForm project_users={this.state.users} createProject={(project_name, repository_link, project_users) =>
                             this.createProject(project_name, repository_link, project_users)} />} />
+                    <Route exact path='/projects/filter' component={() =>
+                        <ProjectFilterForm projects={this.state.projects} deleteProject={(uid)=>this.deleteProject(uid)} filterProjectByName={(project_name)=>this.filterProjectByName(project_name)} />} />
 
                     <Route exact path='/projects' component={() => <ProjectList
                         projects={this.state.projects} deleteProject={(uid)=>this.deleteProject(uid)}/>} />

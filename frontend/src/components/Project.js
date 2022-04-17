@@ -41,10 +41,10 @@ const ProjectList = ({projects, deleteProject}) => {
 
            {projects.map((project) => <ProjectItem project={project} deleteProject={deleteProject}/>)}
        </table>
-       <Link to='/projects/create'>Create</Link>
+       <Link to='/projects/create'>Create   </Link>
+       <Link to='/projects/filter'>Filter</Link>
        </div>
    )
 }
-
 
 export default ProjectList
